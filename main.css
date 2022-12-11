@@ -199,6 +199,7 @@ a:hover {
     height: 406px;
     position: relative;
     background-color: #fff;
+    cursor: pointer;
 }
 
 #content_1_left .bianhua1 img {

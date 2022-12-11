@@ -265,6 +265,46 @@ window.addEventListener('load', function () {
                 con1lis[number].className = 'checked';
                 con1contents[number].style.display = 'block';
             }, 2000)
+        });
+        con1img[i].setAttribute('index', i)
+        con1img[i].addEventListener("mouseenter", function () {
+            clearInterval(timeX);
+            var index = this.getAttribute('index');
+            number = index;
+            for (var k = 0; k < con1lis.length; k++) {
+                con1lis[k].className = '';
+                con1contents[k].style.display = 'none';
+            }
+            con1lis[number].className = 'checked';
+            con1contents[number].style.display = 'block';
+        });
+        con1img[i].addEventListener("mouseleave", function () {
+            var index = this.getAttribute('index');
+            number = index;
+            for (var k = 0; k < con1lis.length; k++) {
+                con1lis[k].className = '';
+                con1contents[k].style.display = 'none';
+            }
+            con1lis[number].className = 'checked';
+            con1contents[number].style.display = 'block';
+            clearInterval(timeX);
+            timeX = setInterval(function () {
+                //当运动到最后一张照片时候，number=0
+                number++;
+                if (number == 8) {
+                    number = 0;
+                }
+                $('.img img').eq(number).stop().show("nomal", "linear", function () {
+                    $('.img img').eq(number - 1).css('display', 'none')
+                });
+                //6.此时的li和content跟着图片而变化
+                for (var k = 0; k < con1lis.length; k++) {
+                    con1lis[k].className = '';
+                    con1contents[k].style.display = 'none';
+                }
+                con1lis[number].className = 'checked';
+                con1contents[number].style.display = 'block';
+            }, 2000)
         })
     }
 
